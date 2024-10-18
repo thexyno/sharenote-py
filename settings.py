@@ -11,7 +11,7 @@ SECRET_API_KEY = os.environ.get("SECRET_API_KEY")
 SERVER_URL = os.environ.get("SERVER_URL")
 
 # Listen port
-PORT = os.environ.get("PORT")
+PORT = int(os.getenv("PORT", 8086))
 
 # File types allowed to be uploaded
 # Copied from the Share Note API source code
