@@ -4,7 +4,7 @@ logging.basicConfig(
         format='[%(asctime)s] %(levelname)s %(module)s/%(funcName)s - %(message)s',
         level=logging.DEBUG if DEBUG else logging.INFO)
 
-from flask import abort, Flask, request, redirect, send_file
+from flask import abort, Flask, request, redirect, send_file, Response
 from flask_cors import CORS
 import json
 import unicodedata
@@ -60,6 +60,14 @@ def favicon():
 @flask_app.route('/v1/account/get-key', methods=['GET'])
 def get_key():
     return 'Please set your API key in the Share Note plugin settings to the one set in settings.py'
+
+
+@flask_app.route('/robots.txt', methods=['GET'])
+def robots():
+    r = Response(response="User-Agent: *\nDisallow: /\n", status=200, mimetype="text/plain")
+    r.headers["Content-Type"] = "text/plain; charset=utf-8"
+    return r
+    
 
 @flask_app.route('/<nid>', methods=['GET'])
 def get_note(nid):
