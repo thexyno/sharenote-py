@@ -8,6 +8,4 @@ COPY assets ./assets
 
 RUN pip install -r requirements.txt
 
-COPY settings.py .
-
 CMD ["gunicorn", "main:flask_app"]
