@@ -78,4 +78,8 @@ function initDocument () {
     });
   };
   document.head.appendChild(script);
+  /*
+   * title editable
+   */
+  document.querySelectorAll("[contenteditable=true]").forEach(x => x.setAttribute("contenteditable", "false"));
 }
