@@ -50,6 +50,10 @@ def index():
         abort(404)
         # return 'The sharenote-py server is running. To customize this page, upload a note titled <b>Share Note Index</b>.'
 
+@flask_app.route('/lucide.min.js', methods=['GET'])
+def lucide():
+    return send_file('assets/lucide.min.js')
+
 @flask_app.route('/app.js', methods=['GET'])
 def appjs():
     return send_file('assets/app.js')

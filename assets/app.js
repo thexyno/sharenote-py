@@ -90,7 +90,7 @@ function initDocument() {
    */
   const script = document.createElement('script');
   script.type = 'text/javascript';
-  script.src = 'https://unpkg.com/lucide@0.287.0/dist/umd/lucide.min.js';
+  script.src = '/lucide.min.js';
   script.onload = () => {
     lucide.createIcons({
       attrs: {
