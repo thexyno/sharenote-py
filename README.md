@@ -36,36 +36,15 @@ You should back up the `static/` directory where the notes are so that links don
 
 Assuming you already have Docker [installed](https://docs.docker.com/engine/install/debian/#install-using-the-repository):
 
-```text
-$ cp settings.py.example settings.py
-$ vim settings.py
-$ sudo docker compose build sharenote
-$ sudo docker compose up -d
+```sh
+$ sudo docker run ghcr.io/thexyno/sharenote-py:latest -e PORT=8086 -e SERVER_URL=https://your.url.example.org -e SECRET_API_KEY=<secret api key>
 ```
+
+you can generate a secret with `openssl rand -hex 64`
 
 The sharenote-py server will now be listening on port 8086.
 
 You should now skip to the reverse proxy instructions below, or set one up with Docker.
-
-
-### Managing Docker
-
-View logs:
-
-```text
-$ docker compose logs -f
-```
-
-How to update:
-
-```text
-$ sudo docker compose down
-$ git pull --rebase
-$ sudo docker compose build sharenote
-$ sudo docker compose up -d
-```
-
-Run the last two commands any time you make a change (ie. to `settings.py`).
 
 
 ## Python Installation
