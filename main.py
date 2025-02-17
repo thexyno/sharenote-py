@@ -56,7 +56,10 @@ def appjs():
 
 @flask_app.route('/favicon.ico', methods=['GET'])
 def favicon():
-    return send_file('assets/favicon.ico')
+    try:
+        return send_file('static/favicon.ico')
+    except FileNotFoundError:
+        return send_file('assets/favicon.ico')
 
 @flask_app.route('/v1/account/get-key', methods=['GET'])
 def get_key():
