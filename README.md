@@ -37,7 +37,11 @@ You should back up the `static/` directory where the notes are so that links don
 Assuming you already have Docker [installed](https://docs.docker.com/engine/install/debian/#install-using-the-repository):
 
 ```sh
-$ sudo docker run ghcr.io/thexyno/sharenote-py:latest -e PORT=8086 -e SERVER_URL=https://your.url.example.org -e SECRET_API_KEY=<secret api key>
+$ sudo docker run -e PORT=8086 \
+                  -e SERVER_URL=https://your.url.example.org \
+                  -e SECRET_API_KEY=ADD_SECRET_COMMAND_OUTPUT_HERE \
+                  -v sharenote-data:/sharenote-py/static \
+                  ghcr.io/thexyno/sharenote-py:latest
 ```
 
 you can generate a secret with `openssl rand -hex 64`
