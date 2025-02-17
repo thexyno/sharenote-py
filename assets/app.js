@@ -1,4 +1,4 @@
-function initDocument () {
+function initDocument() {
   /*
    * Callout fold/unfold
    */
@@ -30,11 +30,33 @@ function initDocument () {
   /*
    * Light/Dark theme toggle
    */
-  const themeToggleEl = document.querySelector('#theme-mode-toggle');
-  themeToggleEl.onclick = () => {
+  const toggleDarkMode = () => {
     document.body.classList.toggle('theme-dark');
     document.body.classList.toggle('theme-light');
   };
+  const activateMode = (dark) => {
+    if (dark) {
+      document.body.classList.add('theme-dark');
+      document.body.classList.remove('theme-light');
+    } else {
+      document.body.classList.remove('theme-dark');
+      document.body.classList.add('theme-light');
+    }
+  };
+
+  const themeToggleEl = document.querySelector('#theme-mode-toggle');
+  themeToggleEl.onclick = () => {
+    toggleDarkMode();
+  };
+  // go to dark mode automatically if needed on start
+  if (window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches) {
+    activateMode(true);
+  }
+  // switch to dark/light mode on browser event
+  window.matchMedia('(prefers-color-scheme: dark)').addEventListener('change', event => {
+    const dark = event.matches;
+    activateMode(dark);
+  });
 
   /*
    * Copy code button
@@ -50,7 +72,7 @@ function initDocument () {
   /*
    * Responsive mobile classes
    */
-  function toggleMobileClasses () {
+  function toggleMobileClasses() {
     const mobileClasses = ['is-mobile', 'is-phone'];
     if (window.innerWidth <= 768) {
       // Is mobile
